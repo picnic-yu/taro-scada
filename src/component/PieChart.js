@@ -24,6 +24,7 @@ function setChartData(chart, data) {
 }
 
 export default class PieChart extends Component {
+  
   config = {
     usingComponents: {
       "ec-canvas": "./ec-canvas/ec-canvas"

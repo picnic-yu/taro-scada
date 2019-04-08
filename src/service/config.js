@@ -1,0 +1,1 @@
+export const base = "http://47.96.168.206/"

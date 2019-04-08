@@ -101,6 +101,7 @@ function setChartData(chart, data) {
         },
         data: data.barData,
       },
+      
       {
         name: "男",
         type: "line",
