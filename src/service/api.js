@@ -11,10 +11,9 @@ export default {
     // let token = getApp().globalData.token
     // if (!token) login()
     console.log('params', params)
-    Taro.getStorage({key:'Authorization'}).then(rst => {   //从缓存中获取用户信息
-        // this.props.setBasicInfo(rst.data)
-        token = rst.data;
-    })
+    
+    token = wx.getStorageSync('Authorization');
+    console.log(token)
     // let contentType = 'application/x-www-form-urlencoded'
     let contentType = 'application/json; charset=utf-8'
     contentType = params.contentType || contentType
@@ -24,7 +23,7 @@ export default {
       url: base + url,
       data: data,
       method: method,
-      header: { 'content-type': contentType, 'Authorization': token },
+      header: { 'content-type': contentType, 'authorization': `Bearer ${token}` },
       success(res) {
         if (res.statusCode === HTTP_STATUS.NOT_FOUND) {
           return logError('api', '请求资源不存在')
@@ -32,7 +31,15 @@ export default {
           return logError('api', '服务端出现了问题')
         } else if (res.statusCode === HTTP_STATUS.FORBIDDEN) {
           return logError('api', '没有权限访问')
-        } else if (res.statusCode === HTTP_STATUS.SUCCESS) {
+        } else if(res.statusCode === HTTP_STATUS.AUTHENTICATE)  {
+          //401
+          Taro.setStorage({key:'Authorization',data:''}).then(rst => {  //将用户信息存入缓存中
+            Taro.redirectTo({
+              url: `/pages/login/index`
+            })
+          })
+          
+        }else if (res.statusCode === HTTP_STATUS.SUCCESS) {
           return res.data
         }
       },

@@ -13,8 +13,6 @@ class Login extends Component {
         this.state = {
             password: '',
             userNameOrEmailAddress:'',
-            checkedList:[],
-            rememberClient:false,
             loading:false,
            
         }
@@ -25,30 +23,20 @@ class Login extends Component {
         }]
     }
     componentWillMount(){
-        Taro.getStorage({key:'Authorization'}).then(rst => {   //从缓存中获取用户信息
-            // this.props.setBasicInfo(rst.data)
-            console.log('token',rst)
+        let token = wx.getStorageSync('Authorization');
+        if(token){
             Taro.switchTab({
                 url: `/pages/index/index`
             })
-        })
+        }
+        
     }
     handleChange (userNameOrEmailAddress,value) {
         this.setState({
             [userNameOrEmailAddress]:value
         })
     }
-    handleCheckBoxChange (value) {
-        this.setState({
-          checkedList: value
-        })
-        let rememberClient = '';
-        value.length ? rememberClient = true : rememberClient = false;
-        this.setState({
-            rememberClient
-        })
-        console.log(value,'val')
-      }
+    
     onSubmit (event) {
         console.log(event)
         let {userNameOrEmailAddress,password,rememberClient} = this.state;
@@ -102,16 +90,12 @@ class Login extends Component {
                 <AtInput
                     name='password'
                     title='密码'
-                    type='text'
+                    type='password'
                     placeholder='请输入密码'
                     value={this.state.password}
                     onChange={this.handleChange.bind(this,'password')}
                     />
-                <AtCheckbox
-                    options={this.checkboxOption}
-                    selectedList={this.state.checkedList}
-                    onChange={this.handleCheckBoxChange.bind(this)}
-                />
+               
                
                 <View className='button-wrap'>
                     <AtButton type='primary' loading={this.state.loading} onClick={this.onSubmit.bind(this)}>登录</AtButton>
