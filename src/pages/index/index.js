@@ -16,97 +16,25 @@ export default class Add extends Component {
       chartData: {
         "day": {
           "totalConsumption": 1333.200,
-          "electricityConsumptionStatisticsDtoList": [{
-            "electricity": 105.600,
-            "belongs": 0
-          }, {
-            "electricity": 82.800,
-            "belongs": 1
-          }, {
-            "electricity": 62.400,
-            "belongs": 2
-          }, {
-            "electricity": 44.400,
-            "belongs": 3
-          }, {
-            "electricity": 49.200,
-            "belongs": 4
-          }, {
-            "electricity": 57.600,
-            "belongs": 5
-          }, {
-            "electricity": 92.400,
-            "belongs": 6
-          }, {
-            "electricity": 85.200,
-            "belongs": 7
-          }, {
-            "electricity": 85.200,
-            "belongs": 8
-          }, {
-            "electricity": 84.000,
-            "belongs": 9
-          }, {
-            "electricity": 88.800,
-            "belongs": 10
-          }, {
-            "electricity": 91.200,
-            "belongs": 11
-          }, {
-            "electricity": 78.000,
-            "belongs": 12
-          }, {
-            "electricity": 80.400,
-            "belongs": 13
-          }, {
-            "electricity": 73.200,
-            "belongs": 14
-          }, {
-            "electricity": 80.400,
-            "belongs": 15
-          }, {
-            "electricity": 92.400,
-            "belongs": 16
-          }]
+          "belongs": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+          "electricity": [105.600, 82.800, 62.400, 44.400, 49.200, 57.600, 92.400, 85.200, 85.200, 84.000, 88.800, 91.200, 78.000, 80.400, 73.200, 80.400, 92.400]
         },
         "month": {
           "totalConsumption": 26743.200,
-          "electricityConsumptionStatisticsDtoList": [{
-            "electricity": 2634.000,
-            "belongs": 1
-          }, {
-            "electricity": 2852.400,
-            "belongs": 2
-          }, {
-            "electricity": 2983.200,
-            "belongs": 3
-          }, {
-            "electricity": 2332.800,
-            "belongs": 4
-          }, {
-            "electricity": 2167.200,
-            "belongs": 5
-          }, {
-            "electricity": 2491.200,
-            "belongs": 6
-          }, {
-            "electricity": 2557.200,
-            "belongs": 7
-          }, {
-            "electricity": 2271.600,
-            "belongs": 8
-          }, {
-            "electricity": 2766.000,
-            "belongs": 9
-          }, {
-            "electricity": 2354.400,
-            "belongs": 10
-          }]
+          "belongs": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+          "electricity": [2634.000, 2852.400, 2983.200, 2332.800, 2167.200, 2491.200, 2557.200, 2271.600, 2766.000, 2354.400]
         },
         "year": {
           "totalConsumption": 26743.200,
-          "electricityConsumptionStatisticsDtoList": []
+          "belongs": [],
+          "electricity": []
         }
+      },
+      chartOption:{
+        title:'日用电检测',
+        xAxis:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+        yAxisData:[105.600, 82.800, 62.400, 44.400, 49.200, 57.600, 92.400, 85.200, 85.200, 84.000, 88.800, 91.200, 78.000, 80.400, 73.200, 80.400, 92.400]
+
       }
     }
     this.handleSelect = this.handleSelect.bind(this);
@@ -116,11 +44,6 @@ export default class Add extends Component {
   }
   componentDidMount() {
     
-    const chartData = {
-      barData: [709,1917,2455,2610,1719,1433,1544,3285,5208,3372,2484,4078],
-      lineData: [1036,3693,2962,3810, 2519,1915,1748, 4675, 6209,4323,2865,4298]
-    };
-    this.addChart.refresh(chartData);
   }
   getOrgInfo(){
     api.get('api/services/app/OrganizationUnit/GetOrganizationUnits').then((res)=>{
@@ -137,19 +60,38 @@ export default class Add extends Component {
     });
   }
   getChartData(organizationUnitId){
-    api.get('api/services/app/PowerStatistics/GetPowerSummaryAsync',{organizationUnitId:'3'}).then((res)=>{
+    api.get('api/services/app/PowerStatistics/GetPowerSummaryForH5Async',{organizationUnitId}).then((res)=>{
       console.log(res)
       if(res.data.success){
         let chartData =  res.data.result;
         this.setState({
           chartData
         });
+        this.handleSelect(1);
       }
     });
   }
   refAddChart = (node) => this.addChart = node
   handleSelect(index){
     let selectIndex = index;
+    var chartOption =  this.state.chartOption;
+    if(index == 0){
+      // year
+      chartOption.title = '年用电检测';
+      chartOption.xAxis = this.state.chartData['year'].belongs;
+      chartOption.yAxisData = this.state.chartData['year'].electricity;
+      this.addChart.refresh(chartOption);
+    }else if(index == 1){
+      chartOption.title = '日用电检测';
+      chartOption.xAxis = this.state.chartData['day'].belongs;
+      chartOption.yAxisData = this.state.chartData['day'].electricity;
+      this.addChart.refresh(chartOption);
+    }else{
+      chartOption.title = '月用电检测';
+      chartOption.xAxis = this.state.chartData['month'].belongs;
+      chartOption.yAxisData = this.state.chartData['month'].electricity;
+      this.addChart.refresh(chartOption);
+    }
     this.setState({
       selectIndex
     });
