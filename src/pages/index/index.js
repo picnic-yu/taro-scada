@@ -52,6 +52,9 @@ export default class Add extends Component {
         let result = res.data.result;
         if(result.items && result.items.length){
           this.getChartData(result.items[0].id);
+          Taro.setStorage({key:'organizationUnitId',data:result.items[0].id}).then(rst => {  //将用户信息存入缓存中
+            
+          })
           wx.setNavigationBarTitle({
             title: result.items[0].displayName
           })
@@ -97,6 +100,14 @@ export default class Add extends Component {
     });
     console.log(index);
   }
+  
+  handleClickGird = (value, index) => {
+    console.log(value, index)
+    // 跳转到目的页面，打开新页面
+    Taro.navigateTo({
+      url: value.url
+    })
+  }
   render() {
     return (
       <View className="worldCloud-chart">
@@ -125,32 +136,48 @@ export default class Add extends Component {
           <LineChart ref={this.refAddChart}/>
         </View>
         <View className='navigator_wrap'>
-          <AtGrid columnNum = '4' data={
+          <AtGrid columnNum = '3' onClick={this.handleClickGird} data={
             [
               {
-                image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
-                value: '领取中心'
+                // image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
+                value: 'SCADE',
+                url:'/pages/electricityAnalysis/index'
               },
               {
-                image: 'https://img20.360buyimg.com/jdphoto/s72x72_jfs/t15151/308/1012305375/2300/536ee6ef/5a411466N040a074b.png',
-                value: '找折扣'
+                // image: 'https://img20.360buyimg.com/jdphoto/s72x72_jfs/t15151/308/1012305375/2300/536ee6ef/5a411466N040a074b.png',
+                value: '用电概括',
+                url:'/pages/electricityAnalysis/index'
               },
               {
-                image: 'https://img10.360buyimg.com/jdphoto/s72x72_jfs/t5872/209/5240187906/2872/8fa98cd/595c3b2aN4155b931.png',
-                value: '领会员'
+                // image: 'https://img10.360buyimg.com/jdphoto/s72x72_jfs/t5872/209/5240187906/2872/8fa98cd/595c3b2aN4155b931.png',
+                value: '用电分析',
+                url:'/pages/electricityAnalysis/index'
               },
               {
-                image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png',
-                value: '新品首发'
+                // image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png',
+                value: '相/线电压检测',
+                url:'/pages/voltage/index'
               },
               {
-                image: 'https://img14.360buyimg.com/jdphoto/s72x72_jfs/t17251/336/1311038817/3177/72595a07/5ac44618Na1db7b09.png',
-                value: '领京豆'
+                // image: 'https://img14.360buyimg.com/jdphoto/s72x72_jfs/t17251/336/1311038817/3177/72595a07/5ac44618Na1db7b09.png',
+                value: '功率因素检测',
+                url:'/pages/electricityAnalysis/index'
               },
               {
-                image: 'https://img30.360buyimg.com/jdphoto/s72x72_jfs/t5770/97/5184449507/2423/294d5f95/595c3b4dNbc6bc95d.png',
-                value: '手机馆'
-              }
+                // image: 'https://img30.360buyimg.com/jdphoto/s72x72_jfs/t5770/97/5184449507/2423/294d5f95/595c3b4dNbc6bc95d.png',
+                value: '电流检测',
+                url:'/pages/electricityAnalysis/index'
+              },
+              {
+                // image: 'https://img30.360buyimg.com/jdphoto/s72x72_jfs/t5770/97/5184449507/2423/294d5f95/595c3b4dNbc6bc95d.png',
+                value: '能耗分析',
+                url:'/pages/electricityAnalysis/index'
+              },
+              {
+                // image: 'https://img30.360buyimg.com/jdphoto/s72x72_jfs/t5770/97/5184449507/2423/294d5f95/595c3b4dNbc6bc95d.png',
+                value: '故障信息',
+                url:'/pages/electricityAnalysis/index'
+              },
             ]
           } />
         </View>

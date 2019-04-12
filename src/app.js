@@ -23,12 +23,16 @@ class App extends Component {
       'pages/login/index',
       'pages/index/index',
       'pages/mine/index',
+      'pages/scada/index',
+      'pages/voltage/index',
+      'pages/electricityAnalysis/index'
     ],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#6190e8',
       navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: '#fff'
+      navigationBarTextStyle: '#fff',
+      pageOrientation:'landscape'
     },
     tabBar: {
       list: [{
@@ -37,7 +41,7 @@ class App extends Component {
         iconPath: "./images/home.png",
         selectedIconPath: "./images/home-active.png"
       },{
-        pagePath: "pages/mine/index",
+        pagePath: "pages/scada/index",
         text: "我的",
         iconPath: "./images/mine.png",
         selectedIconPath: "./images/mine-active.png"
