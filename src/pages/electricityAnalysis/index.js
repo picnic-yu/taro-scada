@@ -123,10 +123,8 @@ export default class Electricity extends Component {
         
         return (
             <View  className='electricityAnalysis'>
-                <View className='page picker__page'>
-                        {/* 日期选择器 */}
+                {/* <View className='page picker__page'>
                     <View className='panel'>
-                        {/* <View className='panel__title'>日期选择器</View> */}
                         <View className='panel__content'>
                         <View className='example-item'>
                             <Picker mode='date' value={dateSel} onChange={this.handleDateChange}>
@@ -141,7 +139,7 @@ export default class Electricity extends Component {
                     </View>
 
                     
-                </View>
+                </View> */}
                 <View className='tag_wrap'>
                     {/* <Text className='title'>时间范围</Text> */}
                     {this.state.solidTagList.map((item, index) => (
