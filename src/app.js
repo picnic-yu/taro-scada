@@ -25,7 +25,8 @@ class App extends Component {
       'pages/mine/index',
       'pages/scada/index',
       'pages/voltage/index',
-      'pages/electricityAnalysis/index'
+      'pages/electricityAnalysis/index',
+      'pages/electricCurrent/index'
     ],
     window: {
       backgroundTextStyle: 'light',
