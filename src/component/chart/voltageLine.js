@@ -7,6 +7,10 @@ function setChartData(chart, data) {
     },
     legend: {
         data:data.legend || ['邮件营销','联盟广告','视频广告','直接访问','搜索引擎'],
+        top: 50,
+        left: 'center',
+        backgroundColor: 'red',
+        z: 100
     },
     title : {
         show:true,//显示策略，默认值true,可选为：true（显示） | false（隐藏）
