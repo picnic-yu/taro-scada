@@ -48,6 +48,7 @@ function setChartData(chart, data) {
     ],
     yAxis : [
       {
+        name:'Kwh',
         type : 'value'
       }
     ],

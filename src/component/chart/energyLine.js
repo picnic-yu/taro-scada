@@ -7,7 +7,7 @@ function setChartData(chart, data) {
     },
     title : {
         show:true,//显示策略，默认值true,可选为：true（显示） | false（隐藏）
-        text: data.title ||'主标题',//主标题文本，'\n'指定换行
+        text: data.title ||'',//主标题文本，'\n'指定换行
         link:'',//主标题文本超链接,默认值true
         target: null,//指定窗口打开主标题超链接，支持'self' | 'blank'，不指定等同为'blank'（新窗口）
         // subtext: '副标题',//副标题文本，'\n'指定换行
@@ -36,7 +36,6 @@ function setChartData(chart, data) {
         zlevel: 0,//一级层叠控制。默认0,每一个不同的zlevel将产生一个独立的canvas，相同zlevel的组件或图标将在同一个canvas上渲染。zlevel越高越靠顶层，canvas对象增多会消耗更多的内存和性能，并不建议设置过多的zlevel，大部分情况可以通过二级层叠控制z实现层叠控制。
         z: 6,//二级层叠控制，默认6,同一个canvas（相同zlevel）上z越高约靠顶层。
     },
-    color: ['#3398DB'],
     xAxis : [
       {
         type: 'category',
@@ -48,8 +47,8 @@ function setChartData(chart, data) {
     ],
     yAxis : [
       {
+        type : 'value',
         name:'Kwh',
-        type : 'value'
       }
     ],
     dataZoom: [//给x轴设置滚动条  
@@ -98,9 +97,9 @@ function setChartData(chart, data) {
     ],
     series : [
         {
-            data: data.yAxisData || [820, 932, 901, 934, 1290, 1330, 1320],
+            data: data.yAxisData1 ||[120, 132, 101, 134, 90, 230, 210],
             type: 'line',
-            smooth: true
+            smooth: true,
         }
     ]
   };
@@ -142,7 +141,7 @@ export default class LineChart extends Component {
     return (
       <ec-canvas
         ref={this.refChart}
-        canvas-id="mychart-area"
+        canvas-id=" voltage-area"
         ec={this.state.ec}
       />
     );

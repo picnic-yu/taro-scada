@@ -27,6 +27,7 @@ class App extends Component {
       'pages/voltage/index',
       'pages/electricityAnalysis/index',
       'pages/factor/index',
+      'pages/energy_profile/index',
       'pages/electricCurrent/index'
     ],
     window: {
