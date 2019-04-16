@@ -26,6 +26,7 @@ class App extends Component {
       'pages/scada/index',
       'pages/voltage/index',
       'pages/electricityAnalysis/index',
+      'pages/factor/index',
       'pages/electricCurrent/index'
     ],
     window: {
