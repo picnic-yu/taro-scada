@@ -28,6 +28,7 @@ class App extends Component {
       'pages/electricityAnalysis/index',
       'pages/factor/index',
       'pages/energy_profile/index',
+      'pages/electricityRoom/index',
       'pages/electricCurrent/index'
     ],
     window: {
@@ -44,7 +45,7 @@ class App extends Component {
         iconPath: "./images/home.png",
         selectedIconPath: "./images/home-active.png"
       },{
-        pagePath: "pages/scada/index",
+        pagePath: "pages/mine/index",
         text: "我的",
         iconPath: "./images/mine.png",
         selectedIconPath: "./images/mine-active.png"

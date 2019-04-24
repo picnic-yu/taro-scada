@@ -178,6 +178,11 @@ export default class Add extends Component {
                 value: '故障信息',
                 url:'/pages/electricityAnalysis/index'
               },
+              {
+                // image: 'https://img30.360buyimg.com/jdphoto/s72x72_jfs/t5770/97/5184449507/2423/294d5f95/595c3b4dNbc6bc95d.png',
+                value: '配电室',
+                url:'/pages/electricityRoom/index'
+              },
             ]
           } />
         </View>

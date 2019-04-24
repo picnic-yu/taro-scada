@@ -77,7 +77,7 @@ class Login extends Component {
         return (
             <View className='login'>
                 <AtMessage />
-                <View className='login-icon_wrap'>11</View>
+                <View className='login-icon_wrap'></View>
                
                 <AtInput
                     name='name'
