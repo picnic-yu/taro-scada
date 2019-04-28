@@ -104,6 +104,7 @@ export default class Add extends Component {
   handleClickGird = (value, index) => {
     console.log(value, index)
     // 跳转到目的页面，打开新页面
+    if(!vvalue.url) return;
     Taro.navigateTo({
       url: value.url
     })
@@ -141,7 +142,7 @@ export default class Add extends Component {
               {
                 // image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
                 value: 'SCADE',
-                url:'/pages/electricityAnalysis/index'
+                // url:'/pages/electricityAnalysis/index'
               },
               {
                 // image: 'https://img20.360buyimg.com/jdphoto/s72x72_jfs/t15151/308/1012305375/2300/536ee6ef/5a411466N040a074b.png',
@@ -176,7 +177,7 @@ export default class Add extends Component {
               {
                 // image: 'https://img30.360buyimg.com/jdphoto/s72x72_jfs/t5770/97/5184449507/2423/294d5f95/595c3b4dNbc6bc95d.png',
                 value: '故障信息',
-                url:'/pages/electricityAnalysis/index'
+                // url:'/pages/electricityAnalysis/index'
               },
               {
                 // image: 'https://img30.360buyimg.com/jdphoto/s72x72_jfs/t5770/97/5184449507/2423/294d5f95/595c3b4dNbc6bc95d.png',

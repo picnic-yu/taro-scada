@@ -32,9 +32,11 @@ export default class Mine extends Component {
     }
     componentDidMount(){
         api.get('api/services/app/User/GetUserInfoDtoForH5Async').then((res)=>{
-            console.log(res,'res')
             if(res.data.success){
-                const userInfo = res.data.result
+                const userInfo = res.data.result;
+                this.setState({
+                    userInfo
+                })
             }
         });
     }

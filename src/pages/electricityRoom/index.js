@@ -4,10 +4,10 @@ import { View, Text, ScrollView } from '@tarojs/components'
 import { AtActivityIndicator } from 'taro-ui'
 import './index.less';
 import Card from './component/card'
+import api from '../../service/api'
 export default class Mine extends Component {
     config = {
         navigationBarTitleText: '配电室',
-        
     }
     constructor(props) {
         super(props)
@@ -25,6 +25,7 @@ export default class Mine extends Component {
             pullText: '上拉加载更多',
             start_p: {},
             scrollY:true,
+            listData:[],
             dargState: 0//刷新状态 0不做操作 1刷新 -1加载更多
         }
     }
@@ -147,19 +148,40 @@ export default class Mine extends Component {
         }
         this.reduction()
     }
+    componentDidMount(){
+        this.getListData();
+    }
+    getListData(MaxResultCount=10,SkipCount=0){
+        let organizationUnitId = wx.getStorageSync('organizationUnitId');
+        if(organizationUnitId){
+            api.get('api/services/app/PowerDistributionRoom/GetPaged',{organizationUnitId,MaxResultCount,SkipCount}).then((res)=>{
+                console.log(res)
+                if(res.data.success){
+                   let listData = res.data.result.items;
+                   console.log(res.data)
+                   console.log(listData)
+                   this.setState({
+                       listData
+                   });
+                   console.log(this.state)
+                }
+            });
+        }
+    }
     render () {
 		let dargStyle = this.state.dargStyle;
         let downDragStyle = this.state.downDragStyle;
         let upDragStyle = this.state.upDragStyle;
         return (
-			<View>
-			    {/* <View style='width:100%;height:20vh;background:#993;' >aaaaaaaa</View> */}
+			
                 <View className='dragUpdataPage'>
                     <View className='downDragBox' style={downDragStyle}>
                         <AtActivityIndicator></AtActivityIndicator>
                         <Text className='downText'>{this.state.downText}</Text>
                     </View>
                     <ScrollView
+                        className='main-wrap'
+                        backgroundColor='#f6f6f6'
                         style={dargStyle}
                         onTouchMove={this.touchmove}
                         onTouchEnd={this.touchEnd}
@@ -169,16 +191,20 @@ export default class Mine extends Component {
                         className='dragUpdata'
                         scrollY={this.state.scrollY}
                         scrollWithAnimation>
-                        <View style='width:100%;height:60vh;' >
-                            <Card></Card>
-                        </View>
+                        {this.state.listData.map((item)=>{
+                            return (<View className='list-item-wrap' key={item.id}>
+                                    <Card item={item}></Card>
+                            </View>)
+                        })}
+                        
+
                     </ScrollView>
                     <View className='upDragBox' style={upDragStyle}>
                         <AtActivityIndicator></AtActivityIndicator>
                         <Text className='downText'>{this.state.pullText}</Text>
                     </View>
                 </View>
-			</View>
+		
         )
     }
 }

@@ -12,6 +12,7 @@ function setChartData(chart, data) {
         backgroundColor: 'red',
         z: 100
     },
+    color:['#ffc0', '#80ef13', '#ff4a4a'],
     title : {
         show:true,//显示策略，默认值true,可选为：true（显示） | false（隐藏）
         text: data.title ||'主标题',//主标题文本，'\n'指定换行
