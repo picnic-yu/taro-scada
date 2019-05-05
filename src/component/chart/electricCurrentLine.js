@@ -1,16 +1,23 @@
 import Taro, { Component } from "@tarojs/taro";
-import * as echarts from "../ec-canvas/echarts";
+var echarts = require('echarts');
 
 function setChartData(chart, data) {
   let option = {
     tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'cross',
+        label: {
+          backgroundColor: '#6a7985'
+        }
+      }
     },
     legend: {
         data:data.legend || ['邮件营销','联盟广告','视频广告','直接访问','搜索引擎'],
-        top: 50,
-        left: 'center',
-        backgroundColor: 'red',
-        z: 100
+        // top: 50,
+        // left: 'center',
+        // backgroundColor: 'red',
+        // z: 100
     },
     title : {
         show:true,//显示策略，默认值true,可选为：true（显示） | false（隐藏）
@@ -43,6 +50,7 @@ function setChartData(chart, data) {
         zlevel: 0,//一级层叠控制。默认0,每一个不同的zlevel将产生一个独立的canvas，相同zlevel的组件或图标将在同一个canvas上渲染。zlevel越高越靠顶层，canvas对象增多会消耗更多的内存和性能，并不建议设置过多的zlevel，大部分情况可以通过二级层叠控制z实现层叠控制。
         z: 6,//二级层叠控制，默认6,同一个canvas（相同zlevel）上z越高约靠顶层。
     },
+    color:['#ffac47', '#80ef13', '#ff1010'],
     xAxis : [
       {
         type: 'category',
@@ -54,7 +62,7 @@ function setChartData(chart, data) {
     ],
     yAxis : [
       {
-        name:'Kwh',
+        name:'电流(A)',
         type : 'value'
       }
     ],

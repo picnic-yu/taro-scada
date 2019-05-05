@@ -72,18 +72,18 @@ export default class Mine extends Component {
                 // }
                 chartOption.xAxis = xAxis;
                 chartOption.legend = ['ab相电压','bc相电压','ca相电压'];
-                chartOption.yAxisData1 = data.aPhaseVoltage;
-                chartOption.yAxisData2 = data.bPhaseVoltage;
-                chartOption.yAxisData3 = data.cPhaseVoltage;
+                chartOption.yAxisData1 = data.uabVoltage;
+                chartOption.yAxisData2 = data.ubcVoltage;
+                chartOption.yAxisData3 = data.ucaVoltage;
                 this.addChart.refresh(chartOption);
 
                 let voltageChartOption = {};
                 voltageChartOption.title = '线电压检测';
                 voltageChartOption.xAxis = xAxis;
                 voltageChartOption.legend = ['ab线电压','bc线电压','ca线电压'];
-                voltageChartOption.yAxisData1 = data.uabVoltage;
-                voltageChartOption.yAxisData2 = data.ubcVoltage;
-                voltageChartOption.yAxisData3 = data.ucaVoltage;
+                voltageChartOption.yAxisData1 = data.aPhaseVoltage;
+                voltageChartOption.yAxisData2 = data.bPhaseVoltage;
+                voltageChartOption.yAxisData3 = data.cPhaseVoltage;
                 this.voltagChart.refresh(voltageChartOption);
 
             }

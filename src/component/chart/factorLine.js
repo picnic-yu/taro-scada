@@ -1,9 +1,16 @@
 import Taro, { Component } from "@tarojs/taro";
-import * as echarts from "../ec-canvas/echarts";
+var echarts = require('echarts');
 
 function setChartData(chart, data) {
   let option = {
     tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'cross',
+        label: {
+          backgroundColor: '#6a7985'
+        }
+      }
     },
     // legend: {
     //     data:data.legend,
@@ -12,6 +19,7 @@ function setChartData(chart, data) {
     //     backgroundColor: 'red',
     //     z: 100
     // },
+    color:['#3398DB'],
     title : {
         show:true,//显示策略，默认值true,可选为：true（显示） | false（隐藏）
         text: data.title ||'',//主标题文本，'\n'指定换行
@@ -54,7 +62,7 @@ function setChartData(chart, data) {
     ],
     yAxis : [
       {
-        name:'Kwh',
+        name:'',
         type : 'value'
       }
     ],

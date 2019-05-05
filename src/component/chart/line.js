@@ -1,9 +1,16 @@
 import Taro, { Component } from "@tarojs/taro";
-import * as echarts from "../ec-canvas/echarts";
+var echarts = require('echarts');
 
 function setChartData(chart, data) {
   let option = {
     tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'cross',
+        label: {
+          backgroundColor: '#6a7985'
+        }
+      }
     },
     title : {
         show:true,//显示策略，默认值true,可选为：true（显示） | false（隐藏）
