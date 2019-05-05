@@ -36,7 +36,7 @@ class App extends Component {
       navigationBarBackgroundColor: '#6190e8',
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: '#fff',
-      pageOrientation:'landscape'
+      
     },
     tabBar: {
       list: [{

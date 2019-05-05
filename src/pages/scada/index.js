@@ -1,17 +1,27 @@
 import Taro, { Component } from '@tarojs/taro'
 import './index.less'
-import { AtAvatar,AtButton } from 'taro-ui'
+import api from '../../service/api'
 export default class Mine extends Component {
     config = {
-        navigationBarTitleText: '个人中心',
+        navigationBarTitleText: 'scada',
         pageOrientation:'landscape'
         
     }
     state = {
         
     }
-    loginOut(){
-
+    
+    componentDidMount(){
+        let organizationUnitId = wx.getStorageSync('organizationUnitId');
+        if(organizationUnitId){
+            
+            api.get('api/services/app/PowerStatistics/GetHistoryDataDtoListAsync',{organizationUnitId}).then((res)=>{
+                console.log(res)
+                if(res.data.success){
+                    
+                }
+            });
+        }
     }
     render () {
         
