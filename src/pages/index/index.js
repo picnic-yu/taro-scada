@@ -5,6 +5,15 @@ import LineChart from '../../component/chart/line'
 import { AtGrid } from "taro-ui"
 import api from '../../service/api'
 import { resolve } from "dns";
+import faultInfo from '../../images/fault_info.svg' 
+import scada from '../../images/scada.svg' 
+import factor from '../../images/factor.svg' 
+import electricCurrent from '../../images/electricCurrent.svg' 
+import powerFacilities from '../../images/powerFacilities.svg' 
+import energyAnalysis from '../../images/energyAnalysis.svg' 
+import voltage from '../../images/voltage.svg' 
+import electricityAnalysis from '../../images/electricityAnalysis.svg' 
+import energy_profile from '../../images/energy_profile.svg' //
 export default class Add extends Component {
   config = {
     navigationBarTitleText: "多图表结合示例"
@@ -140,48 +149,48 @@ export default class Add extends Component {
           <AtGrid columnNum = '3' onClick={this.handleClickGird} data={
             [
               {
-                // image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
+                image: scada,
                 value: 'SCADE',
                 // url:'/pages/scada/index'
               },
               {
-                // image: 'https://img20.360buyimg.com/jdphoto/s72x72_jfs/t15151/308/1012305375/2300/536ee6ef/5a411466N040a074b.png',
+                image: energy_profile,
                 value: '用电概括',
                 url:'/pages/energy_profile/index'
               },
               {
-                // image: 'https://img10.360buyimg.com/jdphoto/s72x72_jfs/t5872/209/5240187906/2872/8fa98cd/595c3b2aN4155b931.png',
+                image: electricityAnalysis,
                 value: '用电分析',
                 url:'/pages/electricityAnalysis/index'
               },
               {
-                // image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png',
+                image: voltage,
                 value: '相/线电压检测',
                 url:'/pages/voltage/index'
               },
               {
-                // image: 'https://img14.360buyimg.com/jdphoto/s72x72_jfs/t17251/336/1311038817/3177/72595a07/5ac44618Na1db7b09.png',
+                image:factor,
                 value: '功率因素检测',
                 url:'/pages/factor/index'
               },
               {
-                // image: 'https://img30.360buyimg.com/jdphoto/s72x72_jfs/t5770/97/5184449507/2423/294d5f95/595c3b4dNbc6bc95d.png',
+                image: electricCurrent,
                 value: '电流检测',
                 url:'/pages/electricCurrent/index'
               },
               {
-                // image: 'https://img30.360buyimg.com/jdphoto/s72x72_jfs/t5770/97/5184449507/2423/294d5f95/595c3b4dNbc6bc95d.png',
-                value: '能耗分析',
-                url:'/pages/energy_profile/index'
+                image: energyAnalysis,
+                value: '箱变信息',
+                // url:'/pages/energy_profile/index'
               },
               {
-                // image: 'https://img30.360buyimg.com/jdphoto/s72x72_jfs/t5770/97/5184449507/2423/294d5f95/595c3b4dNbc6bc95d.png',
+                image: faultInfo,
                 value: '故障信息',
                 // url:'/pages/electricityAnalysis/index'
               },
               {
-                // image: 'https://img30.360buyimg.com/jdphoto/s72x72_jfs/t5770/97/5184449507/2423/294d5f95/595c3b4dNbc6bc95d.png',
-                value: '配电室',
+                image: powerFacilities,
+                value: '配电室',//powerFacilities
                 url:'/pages/electricityRoom/index'
               },
             ]

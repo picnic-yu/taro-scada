@@ -5,6 +5,10 @@ import { AtActivityIndicator } from 'taro-ui'
 import './index.less';
 import Card from './component/card'
 import api from '../../service/api'
+
+var totalCount = 0,
+    MaxResultCount=10,
+    SkipCount=0;
 export default class Mine extends Component {
     config = {
         navigationBarTitleText: '配电室',
@@ -28,6 +32,10 @@ export default class Mine extends Component {
             listData:[],
             dargState: 0//刷新状态 0不做操作 1刷新 -1加载更多
         }
+    }
+    // 跳转到详情页面
+    jumpToDetail(item){
+        console.log(item)
     }
     reduction() {//还原初始设置
         const time = 0.5;
@@ -125,12 +133,17 @@ export default class Mine extends Component {
         }
     }
     pull() {//上拉
-		console.log('上拉')
-        // this.props.onPull()
+        console.log('上拉')
+        if(this.state.listData.length < totalCount ){
+            SkipCount = SkipCount+1;
+            this.getListData();
+        }
+        
     }
     down() {//下拉
-	    console.log('下拉')
-        // this.props.onDown()
+        console.log('下拉')
+        SkipCount = 0;
+        this.getListData();
     }
     ScrollToUpper() { //滚动到顶部事件
 	    console.log('滚动到顶部事件')
@@ -151,19 +164,29 @@ export default class Mine extends Component {
     componentDidMount(){
         this.getListData();
     }
-    getListData(MaxResultCount=10,SkipCount=0){
+    getListData(){
+        console.log(SkipCount,'SkipCount')
         let organizationUnitId = wx.getStorageSync('organizationUnitId');
         if(organizationUnitId){
             api.get('api/services/app/PowerDistributionRoom/GetPaged',{organizationUnitId,MaxResultCount,SkipCount}).then((res)=>{
                 console.log(res)
                 if(res.data.success){
-                   let listData = res.data.result.items;
-                   console.log(res.data)
-                   console.log(listData)
-                   this.setState({
-                       listData
-                   });
-                   console.log(this.state)
+                    let listData  = [];
+                    if(SkipCount){
+                        listData = this.state.listData.concat(res.data.result.items);
+                        totalCount = res.data.result.totalCount
+                        return this.setState({
+                            listData
+                        });
+                    }
+                    listData = res.data.result.items;
+                    totalCount = res.data.result.totalCount
+                    console.log(res.data)
+                    console.log(listData)
+                    this.setState({
+                        listData
+                    });
+                    
                 }
             });
         }
@@ -192,7 +215,7 @@ export default class Mine extends Component {
                         scrollY={this.state.scrollY}
                         scrollWithAnimation>
                         {this.state.listData.map((item)=>{
-                            return (<View className='list-item-wrap' key={item.id}>
+                            return (<View className='list-item-wrap' key={item.id} onClick={() => this.jumpToDetail(item)}>
                                     <Card item={item}></Card>
                             </View>)
                         })}

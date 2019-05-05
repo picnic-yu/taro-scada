@@ -24,6 +24,7 @@ class App extends Component {
       'pages/index/index',
       'pages/mine/index',
       'pages/scada/index',
+      'pages/electrictyDetail/index',//配电室明细
       'pages/voltage/index',
       'pages/electricityAnalysis/index',
       'pages/factor/index',
