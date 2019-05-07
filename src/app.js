@@ -20,17 +20,17 @@ class App extends Component {
 
   config = {
     pages: [
-      'pages/login/index',
-      'pages/index/index',
-      'pages/mine/index',
-      'pages/scada/index',
-      'pages/electrictyDetail/index',//配电室明细
-      'pages/voltage/index',
-      'pages/electricityAnalysis/index',
-      'pages/factor/index',
-      'pages/energy_profile/index',
-      'pages/electricityRoom/index',
-      'pages/electricCurrent/index'
+      'pages/login/index',//
+      'pages/index/index',//
+      'pages/mine/index',//
+      'pages/scada/index',//
+      'pages/electrictyDetailPage/index',//配电室明细
+      'pages/voltage/index',//线电压
+      'pages/electricityAnalysis/index',//用电分析
+      'pages/factor/index',//
+      'pages/energy_profile/index',//
+      'pages/electricityRoom/index',//配电室
+      'pages/electricCurrent/index'//
     ],
     window: {
       backgroundTextStyle: 'light',

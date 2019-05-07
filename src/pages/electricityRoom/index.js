@@ -36,6 +36,9 @@ export default class Mine extends Component {
     // 跳转到详情页面
     jumpToDetail(item){
         console.log(item)
+        Taro.navigateTo({
+            url: `/pages/electrictyDetailPage/index?id=${item.id}`
+        })
     }
     reduction() {//还原初始设置
         const time = 0.5;
