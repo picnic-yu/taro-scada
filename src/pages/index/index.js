@@ -181,7 +181,7 @@ export default class Add extends Component {
               {
                 image: energyAnalysis,
                 value: '箱变信息',
-                // url:'/pages/energy_profile/index'
+                url:'/pages/boxChangeInfo/index'
               },
               {
                 image: faultInfo,

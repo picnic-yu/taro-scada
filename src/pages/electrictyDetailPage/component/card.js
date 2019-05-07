@@ -29,7 +29,7 @@ export default class Card extends Component {
                 </View>):(
                    <View className='list-card'>
                         <View className='card-item'>
-                            <Text className='title'>设备型号号:</Text>
+                            <Text className='title'>设备型号:</Text>
                             <Text className='dec'>{this.props.item.productType}</Text>
                         </View>      
                     </View> 

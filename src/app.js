@@ -28,6 +28,8 @@ class App extends Component {
       'pages/voltage/index',//线电压
       'pages/electricityAnalysis/index',//用电分析
       'pages/factor/index',//
+      'pages/boxChangeInfo/index',//
+      'pages/boxChangeInfoDetail/index',//
       'pages/energy_profile/index',//
       'pages/electricityRoom/index',//配电室
       'pages/electricCurrent/index'//

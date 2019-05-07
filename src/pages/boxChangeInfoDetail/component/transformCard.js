@@ -9,22 +9,28 @@ export default class Card extends Component {
                 <View className='list-card'>
                     <View className='card-item'>
                         <Text className='title'>设备名称:</Text>
-                        <Text className='dec'>{this.props.item.deviceFunction}</Text>
+                        <Text className='dec'>{this.props.item.deviceName}</Text>
                     </View>
                            
                 </View>
                 <View className='list-card'>
                     <View className='card-item'>
                         <Text className='title'>设备编号:</Text>
-                        <Text className='dec'>{this.props.item.deviceName}</Text>
+                        <Text className='dec'>{this.props.item.deviceNumber}</Text>
                     </View>  
                            
                 </View>
-                
                 <View className='list-card'>
                     <View className='card-item'>
                         <Text className='title'>设备型号:</Text>
                         <Text className='dec'>{this.props.item.productType}</Text>
+                    </View>  
+                           
+                </View>
+                <View className='list-card'>
+                    <View className='card-item'>
+                        <Text className='title'>生产厂商:</Text>
+                        <Text className='dec'>{this.props.item.capacitorManufacturer}</Text>
                     </View>      
                 </View>
                 

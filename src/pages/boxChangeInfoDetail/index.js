@@ -19,7 +19,7 @@ export default class Mine extends Component {
     componentDidMount(){
         let BoxTransformerOrPowerDistributionRoomId = this.$router.params.id;
         // 高压设备分页
-        api.get('api/services/app/HighVoltageInformation/GetPaged',{MaxResultCount:50,SkipCount:0,BoxTransformerOrPowerDistributionRoomId,BelongType:1}).then((res)=>{
+        api.get('api/services/app/HighVoltageInformation/GetPaged',{MaxResultCount:50,SkipCount:0,BoxTransformerOrPowerDistributionRoomId,BelongType:2}).then((res)=>{
             if(res.data.success){
                 let highVoltageList  = res.data.result.items;
                 this.setState({
@@ -28,7 +28,7 @@ export default class Mine extends Component {
             }
         });
         // 低压设备分页
-        api.get('api/services/app/LowVoltageInformation/GetPaged',{MaxResultCount:50,SkipCount:0,BoxTransformerOrPowerDistributionRoomId,BelongType:1}).then((res)=>{
+        api.get('api/services/app/LowVoltageInformation/GetPaged',{MaxResultCount:50,SkipCount:0,BoxTransformerOrPowerDistributionRoomId,BelongType:2}).then((res)=>{
             if(res.data.success){
                 let lowVoltageList  = res.data.result.items;
                 this.setState({
@@ -36,7 +36,7 @@ export default class Mine extends Component {
                 });
             }
         });
-        api.get('api/services/app/TransformerInformation/GetPaged',{MaxResultCount:50,SkipCount:0,BoxTransformerOrPowerDistributionRoomId,BelongType:1}).then((res)=>{
+        api.get('api/services/app/TransformerInformation/GetPaged',{MaxResultCount:50,SkipCount:0,BoxTransformerOrPowerDistributionRoomId,BelongType:2}).then((res)=>{
             if(res.data.success){
                 let transformerInformations  = res.data.result.items;
                 this.setState({
