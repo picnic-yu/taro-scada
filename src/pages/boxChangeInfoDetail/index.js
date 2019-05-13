@@ -7,7 +7,7 @@ import Title from './component/title'
 import LowCard from './component/lowCard'
 export default class Mine extends Component {
     config = {
-        navigationBarTitleText: '配电室明细',
+        navigationBarTitleText: '箱变信息明细',
         
     }
     state = {

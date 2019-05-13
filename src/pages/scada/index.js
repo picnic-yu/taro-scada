@@ -4,7 +4,7 @@ import api from '../../service/api'
 export default class Mine extends Component {
     config = {
         navigationBarTitleText: 'scada',
-        pageOrientation:'landscape'
+        // pageOrientation:'landscape'
         
     }
     state = {
@@ -26,9 +26,9 @@ export default class Mine extends Component {
     render () {
         
         return (
-            <View  className='scada_page'>
-                22222
-            </View>
+            <web-view  src='https://ep.wzscr.cn/scada/dongfang.html' className='scada_page'>
+                
+            </web-view>
         )
     }
 }

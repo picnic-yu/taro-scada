@@ -151,7 +151,7 @@ export default class Add extends Component {
               {
                 image: scada,
                 value: 'SCADE',
-                // url:'/pages/scada/index'
+                url:'/pages/scada/index'
               },
               {
                 image: energy_profile,

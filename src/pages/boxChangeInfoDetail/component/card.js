@@ -36,16 +36,23 @@ export default class Card extends Component {
                     </View>  
                            
                 </View>
-                <View className='list-card'>
+                {
+                    this.props.volume?(<View className='list-card'>
                     <View className='card-item'>
-                        <Text className='title'>生产厂商:</Text>
-                        {
-                    this.props.volume?(<Text className='dec'>{this.props.item.capacitorManufacturer}</Text>):(
-                        <Text className='dec'>{this.props.item.manufacturer}</Text>
+                        <Text className='title'>设备容量 kVA:</Text>
+                        <Text className='dec'>{this.props.item.deviceCapaticy}</Text>
+                    </View>      
+                </View>):(
+                    <View className='list-card'>
+                        <View className='card-item'>
+                            <Text className='title'>生产厂商:</Text>
+                            <Text className='dec'>{this.props.item.manufacturer}</Text>
+                        </View>      
+                    </View>
                 )
                 }
-                    </View>      
-                </View>
+
+                
                 
             </View>
             
