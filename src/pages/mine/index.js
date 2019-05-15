@@ -30,6 +30,11 @@ export default class Mine extends Component {
         })
         
     }
+    setUser(){
+        Taro.navigateTo({
+            url: `/pages/editUser/index`
+        })
+    }
     componentDidMount(){
         api.get('api/services/app/User/GetUserInfoDtoForH5Async').then((res)=>{
             if(res.data.success){
@@ -39,6 +44,7 @@ export default class Mine extends Component {
                 })
             }
         });
+        
     }
     render () {
         const userInfo = this.state.userInfo;
@@ -104,7 +110,7 @@ export default class Mine extends Component {
                             <Text className='list-value'>{userInfo.totalCapacity}</Text>
                         </View>
                         
-                        <View className='list-item' style={{
+                        <View className='list-item' onClick={this.setUser.bind(this)} style={{
                             borderBottom:  '1px solid #EAEBEF' 
                             }}>
                             <Text className='list-label'>设置</Text>

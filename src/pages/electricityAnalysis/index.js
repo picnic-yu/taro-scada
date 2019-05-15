@@ -6,7 +6,6 @@ import {addDate} from '../../utils/index';
 import api from '../../service/api'
 import ElectricityBar from '../../component/chart/electricityAnalysisBar'
 const now = addDate(new Date(),0);
-console.log(now,'noewwwwwww')
 export default class Electricity extends Component {
     config = {
         navigationBarTitleText: '用电分析',
@@ -32,13 +31,11 @@ export default class Electricity extends Component {
         let organizationUnitId = wx.getStorageSync('organizationUnitId');
         if(organizationUnitId){
             api.get('api/services/app/ElectricityMeterInfo/GetCustomerElectricityMeterInfoDropdownList',{organizationUnitId}).then((res)=>{
-                console.log(res)
                 if(res.data.success){
                     let category =  res.data.result;
                     category.forEach((item)=>{
                         item.active = false;
                     })
-                    console.log(category,'category')
                     let GetUsePowerTrendDtoForH5AsyncParam = this.state.GetUsePowerTrendDtoForH5AsyncParam;
                     if(category.length)  {
                         category[0].active = true;

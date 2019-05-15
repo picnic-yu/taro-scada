@@ -5,7 +5,6 @@ import { Picker } from '@tarojs/components';
 import {addDate} from '../../utils/index';
 import api from '../../service/api'
 const now = addDate(new Date(),0);
-console.log(now,'noewwwwwww')
 export default class Mine extends Component {
     config = {
         navigationBarTitleText: '用电分析',
@@ -27,13 +26,11 @@ export default class Mine extends Component {
         let organizationUnitId = wx.getStorageSync('organizationUnitId');
         if(organizationUnitId){
             api.get('api/services/app/ElectricityMeterInfo/GetCustomerElectricityMeterInfoDropdownList',{organizationUnitId}).then((res)=>{
-                console.log(res)
                 if(res.data.success){
                     let category =  res.data.result;
                     category.forEach((item)=>{
                         item.active = false;
                     })
-                    console.log(category,'category')
                     if(category.length)  category[0].active = true;
                     this.setState({
                         category

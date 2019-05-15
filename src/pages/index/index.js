@@ -56,7 +56,6 @@ export default class Add extends Component {
   }
   getOrgInfo(){
     api.get('api/services/app/OrganizationUnit/GetOrganizationUnits').then((res)=>{
-      console.log(res)
       if(res.data.success){
         let result = res.data.result;
         if(result.items && result.items.length){
@@ -73,7 +72,6 @@ export default class Add extends Component {
   }
   getChartData(organizationUnitId){
     api.get('api/services/app/PowerStatistics/GetPowerSummaryForH5Async',{organizationUnitId}).then((res)=>{
-      console.log(res)
       if(res.data.success){
         let chartData =  res.data.result;
         this.setState({
@@ -107,11 +105,9 @@ export default class Add extends Component {
     this.setState({
       selectIndex
     });
-    console.log(index);
   }
   
   handleClickGird = (value, index) => {
-    console.log(value, index)
     // 跳转到目的页面，打开新页面
     if(!value.url) return;
     Taro.navigateTo({

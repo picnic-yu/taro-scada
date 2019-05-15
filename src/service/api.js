@@ -10,10 +10,8 @@ export default {
     let { url, data } = params
     // let token = getApp().globalData.token
     // if (!token) login()
-    console.log('params', params)
     
     token = wx.getStorageSync('Authorization');
-    console.log(token)
     // let contentType = 'application/x-www-form-urlencoded'
     let contentType = 'application/json; charset=utf-8'
     contentType = params.contentType || contentType
@@ -56,5 +54,9 @@ export default {
   post: function (url, data, contentType) {
     let params = { url, data, contentType }
     return this.baseOptions(params, 'POST')
+  },
+  put: function (url, data, contentType) {
+    let params = { url, data, contentType }
+    return this.baseOptions(params, 'PUT')
   }
 }

@@ -35,7 +35,6 @@ export default class Mine extends Component {
     }
     // 跳转到详情页面
     jumpToDetail(item){
-        console.log(item)
         Taro.navigateTo({
             url: `/pages/electrictyDetailPage/index?id=${item.id}`
         })
@@ -168,11 +167,9 @@ export default class Mine extends Component {
         this.getListData();
     }
     getListData(){
-        console.log(SkipCount,'SkipCount')
         let organizationUnitId = wx.getStorageSync('organizationUnitId');
         if(organizationUnitId){
             api.get('api/services/app/PowerDistributionRoom/GetPaged',{organizationUnitId,MaxResultCount,SkipCount}).then((res)=>{
-                console.log(res)
                 if(res.data.success){
                     let listData  = [];
                     if(SkipCount){
@@ -184,8 +181,6 @@ export default class Mine extends Component {
                     }
                     listData = res.data.result.items;
                     totalCount = res.data.result.totalCount
-                    console.log(res.data)
-                    console.log(listData)
                     this.setState({
                         listData
                     });

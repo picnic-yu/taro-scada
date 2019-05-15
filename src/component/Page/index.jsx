@@ -11,7 +11,6 @@ class Page extends Component {
 
   tabBarHandleClick = current => {
     const url = this.state.map[current]
-    console.log(current)
     Taro.redirectTo({ url });
     // Taro.navigateTo({
     //   url

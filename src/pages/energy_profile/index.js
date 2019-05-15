@@ -28,13 +28,11 @@ export default class Mine extends Component {
         if(organizationUnitId){
             
             api.get('api/services/app/ElectricityMeterInfo/GetCustomerElectricityMeterInfoDropdownList',{organizationUnitId}).then((res)=>{
-                console.log(res)
                 if(res.data.success){
                     let category =  res.data.result;
                     category.forEach((item)=>{
                         item.active = false;
                     })
-                    console.log(category,'category');
                     let viltageParam = this.state.viltageParam;
                     if(category.length)  {
                         category[0].active = true;
@@ -81,7 +79,6 @@ export default class Mine extends Component {
     handleCategoryClick(data){
         const { category,viltageParam } = this.state
         const findIndex = category.findIndex(item => item.alias === data.name);
-        console.log(findIndex,'find')
         if(category[findIndex].active) return;
         viltageParam.ElectricityMeterInfoId = category[findIndex].id;
         const active = !category[findIndex].active

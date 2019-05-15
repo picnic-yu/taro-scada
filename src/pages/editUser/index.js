@@ -6,15 +6,23 @@ import api from '../../service/api'
 import './index.less'
 class Login extends Component {
     config = {
-        navigationBarTitleText:'用户登录'
+        navigationBarTitleText:'修改帐号和密码'
     }
     constructor () {
         super(...arguments)
         this.state = {
             password: '',
-            userNameOrEmailAddress:'',
+            userName:'',
+            emailAddress:'',
+            surname:'',
+            phoneNumber:'',
+            name:'',
             loading:false,
+            isActive:true
            
+        }
+        this.params = {
+
         }
         this.checkboxOption = [{
             value: 'list1',
@@ -23,25 +31,32 @@ class Login extends Component {
         }]
     }
     componentWillMount(){
-        let token = wx.getStorageSync('Authorization');
-        if(token){
-            Taro.switchTab({
-                url: `/pages/index/index`
-            })
-        }
+        let userId = wx.getStorageSync('userId')
+        api.get('api/services/app/User/GetUserForEdit',{Id:userId}).then((res)=>{
+            if(res.data.success){
+                const password = res.data.result.user.password;
+                const userName = res.data.result.user.userName;
+               
+                this.params = res.data.result.user;
+                this.setState({
+                    password,
+                    userName
+                });
+            }
+        });
         
     }
-    handleChange (userNameOrEmailAddress,value) {
+    handleChange (userName,value) {
         this.setState({
-            [userNameOrEmailAddress]:value
+            [userName]:value
         })
     }
     
     onSubmit (event) {
-        let {userNameOrEmailAddress,password,rememberClient} = this.state;
-        if(!userNameOrEmailAddress || !password){
+        let {password,userName} = this.state;
+        if(!userName){
             Taro.atMessage({
-                'message': '用户名或密码不能为空',
+                'message': '用户名不能为空',
                 'type': 'warning',
             })
             return
@@ -51,19 +66,19 @@ class Login extends Component {
             loading:true
         });
         
-        api.post('api/TokenAuth/Authenticate',{userNameOrEmailAddress,password,rememberClient}).then((res)=>{
+        this.params['userName'] = userName;
+        this.params['password'] = password;
+        api.put('api/services/app/User/UpdateUserAsyncForH5',this.params).then((res)=>{
             if(res.data.success){
-                Taro.setStorage({key:'userId',data:res.data.result.userId}).then(rst => {  //将用户信息存入缓存中
-                   
+                Taro.switchTab({
+                    url: `/pages/mine/index`
                 })
-                Taro.setStorage({key:'Authorization',data:res.data.result.accessToken}).then(rst => {  //将用户信息存入缓存中
-                    Taro.switchTab({
-                        url: `/pages/index/index`
-                    })
-                })
+                // Taro.setStorage({key:'Authorization',data:res.data.result.accessToken}).then(rst => {  //将用户信息存入缓存中
+                    
+                // })
             }else{
                 Taro.atMessage({
-                    'message': '登录失败',
+                    'message': '保存失败',
                     'type': 'error',
                 })
             }
@@ -76,30 +91,29 @@ class Login extends Component {
   
     render () {
         return (
-            <View className='login'>
+            <View className='edit_user'>
                 <AtMessage />
-                <View className='login-icon_wrap'></View>
                
                 <AtInput
                     name='name'
                     title='账户'
                     type='text'
                     placeholder='请输入账户'
-                    value={this.state.userNameOrEmailAddress}
-                    onChange={this.handleChange.bind(this,'userNameOrEmailAddress')}
+                    value={this.state.userName}
+                    onChange={this.handleChange.bind(this,'userName')}
                     />
                 <AtInput
                     name='password'
-                    title='密码'
+                    title='新密码'
                     type='password'
-                    placeholder='请输入密码'
+                    placeholder='请输入新密码'
                     value={this.state.password}
                     onChange={this.handleChange.bind(this,'password')}
                     />
                
                
                 <View className='button-wrap'>
-                    <AtButton type='primary' loading={this.state.loading} onClick={this.onSubmit.bind(this)}>登录</AtButton>
+                    <AtButton type='primary' loading={this.state.loading} onClick={this.onSubmit.bind(this)}>确认提交</AtButton>
                 </View>
                
             </View>
