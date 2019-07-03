@@ -1,11 +1,6 @@
-import '@tarojs/async-await'
 import Taro, { Component } from '@tarojs/taro'
-import { Provider } from '@tarojs/redux'
-import 'taro-ui/dist/style/index.scss'
 import Login from './pages/login'
-
-import configStore from './store'
-
+import 'taro-ui/dist/style/index.scss'
 import './app.less'
 
 // 如果需要在 h5 环境中开启 React Devtools
@@ -14,8 +9,6 @@ import './app.less'
 //   require('nerv-devtools')
 // }
 
-const store = configStore()
-
 class App extends Component {
 
   config = {
@@ -23,25 +16,26 @@ class App extends Component {
       'pages/login/index',//登录页面
       'pages/index/index',//首页
       'pages/mine/index',//个人中心
+      'pages/boxChangeInfo/index',//箱变列表
+      'pages/boxChangeInfoDetail/index',//箱变具体信息
+      'pages/breakdown/index',//故障信息
       'pages/editUser/index',//设置，修改密码
-      'pages/scada/index',//scada列表
-      'pages/scadaDetail/index',//具体的scada图
       'pages/electrictyDetailPage/index',//配电室明细
       'pages/voltage/index',//线电压
       'pages/electricityAnalysis/index',//用电分析
       'pages/factor/index',//功率因素
-      'pages/boxChangeInfo/index',//箱变列表
-      'pages/boxChangeInfoDetail/index',//箱变具体信息
       'pages/energy_profile/index',//用电概括
       'pages/electricityRoom/index',//配电室
-      'pages/electricCurrent/index'//电流检测
+      'pages/electricCurrent/index',//电流检测
+      'pages/scada/index',//scada列表
+      'pages/scadaDetail/index',//具体的scada图
     ],
+    
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#6190e8',
       navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: '#fff',
-      
+      navigationBarTextStyle: 'white',
     },
     tabBar: {
       list: [{
@@ -57,8 +51,8 @@ class App extends Component {
       }],
       color: '#333',
       selectedColor: '#1296db',
-      backgroundColor: '#fff',
-      borderStyle: '#ccc'
+      backgroundColor: 'white',
+      borderStyle: 'white'
     }
   }
 
@@ -68,17 +62,13 @@ class App extends Component {
 
   componentDidHide () {}
 
-  componentCatchError () {}
-
   componentDidCatchError () {}
 
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数
   render () {
     return (
-      <Provider store={store}>
-        <Login />
-      </Provider>
+      <Login />
     )
   }
 }

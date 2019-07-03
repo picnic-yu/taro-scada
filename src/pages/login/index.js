@@ -23,6 +23,7 @@ class Login extends Component {
         }]
     }
     componentWillMount(){
+        console.log(222)
         let token = wx.getStorageSync('Authorization');
         if(token){
             Taro.switchTab({

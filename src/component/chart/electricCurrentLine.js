@@ -1,6 +1,6 @@
 import Taro, { Component } from "@tarojs/taro";
-var echarts = require('echarts');
-
+import * as echarts from "../ec-canvas/echarts";
+// var echarts = require('echarts');
 function setChartData(chart, data) {
   let option = {
     tooltip: {

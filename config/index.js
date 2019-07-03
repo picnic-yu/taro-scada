@@ -1,6 +1,6 @@
 const config = {
-  projectName: 'taro-scada',
-  date: '2019-4-3',
+  projectName: 'myApp',
+  date: '2019-7-3',
   designWidth: 750,
   deviceRatio: {
     '640': 2.34 / 2,
@@ -68,7 +68,6 @@ const config = {
     }
   },
   h5: {
-    esnextModules: ['taro-ui'],
     publicPath: '/',
     staticDirectory: 'static',
     module: {

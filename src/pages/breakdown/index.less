@@ -1,0 +1,93 @@
+.dragUpdataPage{
+	height: 100vh;position: relative;overflow: hidden;
+	background: #f6f6f6;
+	.list-item-wrap{
+		padding-top:20px;
+	}
+	.main-wrap{
+		background: #f6f6f6;
+	}
+	.downDragBox{
+	    width: 100%;
+	    top: 0px;
+	    display: flex;
+	    overflow: hidden;
+	    justify-content: center;
+	    align-items: center;
+	    font-size: 30px;
+	    position: absolute;
+	}
+	.upDragBox{
+	    bottom: 0px;
+	    width: 100%;
+	    display: flex;
+	    overflow: hidden;
+	    justify-content: center;
+	    align-items: center;
+	    font-size: 30px;
+	    position: absolute;
+	}
+	.dragUpdata{height: 100%;width: 100%;position: absolute;}
+	.downText{margin-left: 20px;}
+}
+.tag_wrap{
+	width: 100%;
+	margin-top: 10px;
+	font-size: 28px;
+	color: #333;
+	.title{
+		padding: 0 10px;
+	}
+	.tag_item{
+		margin-right: 20px;
+	}
+}
+.chart_wrap{
+	width: 100%;
+	margin-top: 20px;
+	background: #fff;
+	height: 600px;
+}
+.picker__page .example-item {
+    .at-list__item .item-extra__info {
+      max-width: 300px;
+    }
+  }
+  
+  .demo-list-item {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 24px;
+  
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: auto;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transform: scaleY(0.5);
+      border-bottom: 1PX solid #d6e4ef;
+      transform-origin: center;
+      box-sizing: border-box;
+      pointer-events: none;
+    }
+  
+    &::before {
+      top: 0;
+      bottom: auto;
+    }
+  
+    &__label,
+    &__value {
+      color: #333;
+      font-size: 32px;
+      line-height: 1.5;
+    }
+  
+    &__value {
+      color: #999;
+    }
+  }

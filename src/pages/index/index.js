@@ -182,7 +182,7 @@ export default class Add extends Component {
               {
                 image: faultInfo,
                 value: '故障信息',
-                // url:'/pages/electricityAnalysis/index'
+                url:'/pages/breakdown/index'
               },
               {
                 image: powerFacilities,
