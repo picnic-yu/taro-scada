@@ -39,10 +39,15 @@ export default class Mine extends Component {
                 { alias: '东方魅力1', active: true },
                 { alias: '东方魅力2', active: false },
             ],
+            dealType:[
+                { alias: '已处理', active: true,IsDoWithType:1 },
+                { alias: '未处理', active: false, IsDoWithType:0 },
+            ],
             viltageParam:{
                 ElectricityMeterInfoId:'',
-                StartDate:`${now} 00:00:00`,
-                EndData:`${now} 23:59:59`,
+                StartDate:`${now}`,
+                EndData:`${now}`,
+                IsDoWithType:1
             }
         }
     }
@@ -53,7 +58,6 @@ export default class Mine extends Component {
         })
     }
     handleCategoryClick(data){
-        console.log(data)
         const { category,viltageParam } = this.state
         const findIndex = category.findIndex(item => item.alias === data.name);
         if(category[findIndex].active) return;
@@ -67,9 +71,23 @@ export default class Mine extends Component {
         SkipCount = 0;
         this.getListData();
     }
+    handleDealtypeClick(data){
+        const { dealType,viltageParam } = this.state
+        const findIndex = dealType.findIndex(item => item.alias === data.name);
+        if(dealType[findIndex].active) return;
+        viltageParam.IsDoWithType = dealType[findIndex].IsDoWithType;
+        const active = !dealType[findIndex].active
+        dealType.forEach((item)=>{
+            item.active = false;
+        })
+        dealType[findIndex].active = active;
+        this.setState({ dealType,viltageParam });
+        SkipCount = 0;
+        this.getListData();
+    }
     handleDateChange = e => {
         let viltageParam = this.state.viltageParam;
-        viltageParam.StartDate = `${ e.detail.value} 00:00:00`;
+        viltageParam.StartDate = `${ e.detail.value}`;
         this.setState({
             dateSel: e.detail.value,
             viltageParam
@@ -80,7 +98,7 @@ export default class Mine extends Component {
     }
     handleEndDateChange = e =>{
         let viltageParam = this.state.viltageParam;
-        viltageParam.EndData = `${e.detail.value} 23:59:59`;
+        viltageParam.EndData = `${e.detail.value}`;
         this.setState({
             endDate: e.detail.value,
             viltageParam
@@ -309,7 +327,20 @@ export default class Mine extends Component {
                             >{item.alias}</AtTag>
                         ))}
                     </View>
-
+                    <View className='tag_wrap'>
+                        {this.state.dealType.map((item) => (
+                        
+                            <AtTag
+                            className='tag_item'
+                            key={item.alias}
+                            type='primary'
+                            name={item.alias}
+                            active={item.active}
+                            
+                            onClick={this.handleDealtypeClick.bind(this)}
+                            >{item.alias}</AtTag>
+                        ))}
+                    </View>
                 </View>
                 <View className='dragUpdataPage'>
                     <View className='downDragBox' style={downDragStyle}>

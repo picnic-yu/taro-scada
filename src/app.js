@@ -52,7 +52,7 @@ class App extends Component {
       color: '#333',
       selectedColor: '#1296db',
       backgroundColor: 'white',
-      borderStyle: 'white'
+      borderStyle: 'black'
     }
   }
 
