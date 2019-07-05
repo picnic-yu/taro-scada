@@ -12,7 +12,7 @@ var totalCount = 0,
     SkipCount=0;
 export default class Mine extends Component {
     config = {
-        navigationBarTitleText: '箱变信息',
+        navigationBarTitleText: '故障信息',
     }
     constructor(props) {
         super(props)
@@ -44,7 +44,7 @@ export default class Mine extends Component {
                 { alias: '未处理', active: false, IsDoWithType:0 },
             ],
             viltageParam:{
-                ElectricityMeterInfoId:'',
+                ElectricityMeterInfoId:2,
                 StartDate:`${now}`,
                 EndData:`${now}`,
                 IsDoWithType:1
@@ -234,7 +234,6 @@ export default class Mine extends Component {
     componentDidMount(){
         let organizationUnitId = wx.getStorageSync('organizationUnitId');
         if(organizationUnitId){
-            
             api.get('api/services/app/ElectricityMeterInfo/GetCustomerElectricityMeterInfoDropdownList',{organizationUnitId}).then((res)=>{
                 if(res.data.success){
                     let category =  res.data.result;
@@ -359,11 +358,13 @@ export default class Mine extends Component {
                         className='dragUpdata'
                         scrollY={this.state.scrollY}
                         scrollWithAnimation>
-                        {this.state.listData.map((item,index)=>{
-                            return (<View className='list-item-wrap' key={item.id} >
-                                    <Card index={index+1} item={item}></Card>
-                            </View>)
-                        })}
+                        {
+                            this.state.listData.length? this.state.listData.map((item,index)=>{
+                                return (<View className='list-item-wrap' key={item.id} >
+                                        <Card index={index+1} item={item}></Card>
+                                </View>)
+                            }) : (<View className='nodata'>暂无数据</View>)
+                        } 
                         
 
                     </ScrollView>
